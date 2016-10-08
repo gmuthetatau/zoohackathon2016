@@ -1,1 +1,4 @@
-flask
+django
+djangorestframework
+markdown
+django-filter
