@@ -1,4 +1,8 @@
 django
+django-filter
+django-model-utils
 djangorestframework
 markdown
-django-filter
+djangorestframework-xml
+djangorestframework-yaml
+djangorestframework-csv
