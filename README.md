@@ -1,1 +1,1 @@
-# zoohackathon2016
+# Zoohackathon 2016The National Zoo held its first ever Zoohackathon across multiple continents and countries during the weekend of October 7 - October 9. We have built a discrete reporting tool for wildlife trafficking and deforestation. The reporting tool consists of a backend written in Python and Flask (see the `web` folder), and frontend smartwatch applications written for Android Wear (see `android` folder) and Apple Watch (see `ios` folder).
