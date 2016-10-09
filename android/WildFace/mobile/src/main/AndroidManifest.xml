@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.gmuthetatau.wildface">
+<manifest package="org.gmuthetatau.wildface"
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Required to act as a custom watch face. -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" />
+        android:theme="@style/AppTheme">
+        <service
+            android:name=".ReportingService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
+
+        <activity
+            android:name=".ReportingActivity"
+            android:label="@string/title_activity_reporting"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+    </application>
 
 </manifest>

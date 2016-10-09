@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WildFace</string>
+    <string name="title_activity_reporting">ReportingActivity</string>
 </resources>
