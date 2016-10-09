@@ -140,7 +140,7 @@ public class WildFaceService extends CanvasWatchFaceService {
 
             mBackgroundPaint = new Paint();
             mBackgroundPaint.setColor(Color.BLACK);
-            mBackgroundBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bg);
+            mBackgroundBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.harambe);
 
             /* Set defaults for colors */
             mWatchHandColor = Color.WHITE;
