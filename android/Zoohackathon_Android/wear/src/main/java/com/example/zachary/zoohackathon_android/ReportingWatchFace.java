@@ -32,6 +32,7 @@ import android.support.wearable.watchface.CanvasWatchFaceService;
 import android.support.wearable.watchface.WatchFaceStyle;
 import android.text.format.Time;
 import android.view.SurfaceHolder;
+import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 import java.util.TimeZone;
@@ -54,10 +55,18 @@ public class ReportingWatchFace extends CanvasWatchFaceService
      */
     private static final int MSG_UPDATE_TIME = 0;
 
+    public static Context context = null;
+
     @Override
     public Engine onCreateEngine()
     {
+        ReportingWatchFace.context = this;
         return new Engine();
+    }
+
+    public static void quickToast(String s)
+    {
+        Toast.makeText(ReportingWatchFace.context,s,Toast.LENGTH_SHORT).show();
     }
 
     private static class EngineHandler extends Handler
@@ -114,6 +123,8 @@ public class ReportingWatchFace extends CanvasWatchFaceService
         public void onCreate(SurfaceHolder holder)
         {
             super.onCreate(holder);
+
+
 
             setWatchFaceStyle(new WatchFaceStyle.Builder(ReportingWatchFace.this)
                     .setCardPeekMode(WatchFaceStyle.PEEK_MODE_SHORT)
@@ -194,6 +205,7 @@ public class ReportingWatchFace extends CanvasWatchFaceService
                     break;
                 case TAP_TYPE_TAP:
                     // The user has completed the tap gesture.
+
                     mTapCount++;
                     mBackgroundPaint.setColor(resources.getColor(mTapCount % 2 == 0 ?
                             R.color.background : R.color.background2));
