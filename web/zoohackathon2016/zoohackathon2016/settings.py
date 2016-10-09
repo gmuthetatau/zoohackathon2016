@@ -136,8 +136,3 @@ REST_FRAMEWORK = {
         'rest_framework_csv.renderers.CSVRenderer',
     ),
 }
-
-try:
-    from .secrets import *
-except:
-    pass
