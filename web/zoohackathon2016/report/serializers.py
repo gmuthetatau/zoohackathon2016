@@ -1,9 +1,9 @@
-import django_filters
 from rest_framework import serializers
-from report.models import Report
+from .models import Report
 
 
 class ChoicesField(serializers.Field):
+
     def __init__(self, choices, **kwargs):
         self._choices = choices
         super(ChoicesField, self).__init__(**kwargs)

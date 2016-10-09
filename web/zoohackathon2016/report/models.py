@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from model_utils import Choices
 
+
 class Report(models.Model):
     """Store report information"""
     REPORT_TYPES = Choices(
