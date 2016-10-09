@@ -39,7 +39,7 @@ public class ReportingActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reporting);
 
-        poster = new Poster(this, "/report");
+        poster = new Poster(this, "/report/");
 
         googleapi = new GoogleApiClient.Builder(this)
                         .addApi(Wearable.API)

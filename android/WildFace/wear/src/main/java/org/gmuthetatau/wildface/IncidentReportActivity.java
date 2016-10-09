@@ -8,14 +8,22 @@ import android.support.wearable.view.BoxInsetLayout;
 import android.support.wearable.view.WearableListView;
 import android.widget.Toast;
 
+import com.google.android.gms.wearable.DataMap;
+import com.google.android.gms.wearable.PutDataMapRequest;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class IncidentReportActivity extends WearableActivity implements WearableListView.ClickListener {
 
-//    private static final SimpleDateFormat AMBIENT_DATE_FORMAT =
-//            new SimpleDateFormat("HH:mm", Locale.US);
+    private static final SimpleDateFormat REPORT_DATE_FORMAT =
+            new SimpleDateFormat("YYYY-MM-DD HH:mm", Locale.US);
 
     private BoxInsetLayout mContainerView;
     private WearableListView mListView;
     String[] elements = {"Shop/Market", "Restaurant/Eatery", "Live Animal Display", "Poaching", "Other"};
+    private SendToPhone sendToPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +35,7 @@ public class IncidentReportActivity extends WearableActivity implements Wearable
         mListView = (WearableListView) findViewById(R.id.wearable_list);
         mListView.setAdapter(new Adapter(this, elements));
         mListView.setClickListener(this);
+        sendToPhone = new SendToPhone(this);
     }
 
     @Override
@@ -70,7 +79,32 @@ public class IncidentReportActivity extends WearableActivity implements Wearable
                 ConfirmationActivity.SUCCESS_ANIMATION);
         intent.putExtra(ConfirmationActivity.EXTRA_MESSAGE, "Clicked item " + tag);
         startActivity(intent);
+        PutDataMapRequest pdmr = sendToPhone.getDataMap("/report/");
+        DataMap map = pdmr.getDataMap();
+        map.putString("report_type", coerceTag(tag));
+        map.putString("event_time", REPORT_DATE_FORMAT.format(new Date()));
+        sendToPhone.sendData(pdmr);
 
+
+
+    }
+    public String coerceTag(int x)
+    {
+        switch(x)
+        {
+            case 0:
+                return "A";
+            case 1:
+                return "B";
+            case 2:
+                return "C";
+            case 3:
+                return "D";
+            case 4:
+                return "E";
+            default:
+                return "E";
+        }
     }
 
     @Override

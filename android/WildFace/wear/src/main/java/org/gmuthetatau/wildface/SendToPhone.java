@@ -6,7 +6,10 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.wearable.DataApi;
+import com.google.android.gms.wearable.DataMap;
+import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
 
@@ -17,17 +20,17 @@ public class SendToPhone
 {
     private GoogleApiClient googleapi;
     private Context context;
+    private static int count = 0;
     public SendToPhone(Context c)
     {
         this.context = c;
-        GoogleApiClient googleapi = new GoogleApiClient.Builder(this.context)
+        final GoogleApiClient googleapi = new GoogleApiClient.Builder(this.context)
                 .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks()
                 {
                     @Override
                     public void onConnected(Bundle bundle)
                     {
                         quickToast(context, "onConnected: " + bundle.toString());
-                        //use the data layer api
                     }
 
                     @Override
@@ -44,14 +47,17 @@ public class SendToPhone
                     }
                 }).addApi(Wearable.API).build();
     }
-    public int sendData(byte[] arr, String path)
+    public void sendData(PutDataMapRequest pdmr)
     {
-        PutDataRequest pdr = PutDataRequest.create(path);
-        if (pdr == null)
-            return -1;
-        pdr.setData(arr);
-        Wearable.DataApi.putDataItem(googleapi, pdr);
-        return 1;
+        PutDataRequest putDataReq = pdmr.asPutDataRequest();
+        PendingResult<DataApi.DataItemResult> pendingResult = Wearable.DataApi.putDataItem(googleapi, putDataReq);
+    }
+    public PutDataMapRequest getDataMap(String path)
+    {
+        path = path+SendToPhone.count;
+        PutDataMapRequest pdmr = PutDataMapRequest.create(path);
+        pdmr.setUrgent();
+        return pdmr;
     }
     public static void quickToast(Context c, String s)
     {
