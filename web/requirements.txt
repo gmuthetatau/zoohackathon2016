@@ -1,1 +1,8 @@
-flask
+django
+django-filter
+django-model-utils
+djangorestframework
+markdown
+djangorestframework-xml
+djangorestframework-yaml
+djangorestframework-csv
