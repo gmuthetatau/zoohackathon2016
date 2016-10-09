@@ -2,4 +2,6 @@
     <string name="app_name">WildFace</string>
     <string name="message">Watch face tapped</string>
     <string name="preview_label">Wildface</string>
+    <string name="title_activity_incident_report">IncidentReportActivity</string>
+    <string name="hello_world">Hello World!</string>
 </resources>

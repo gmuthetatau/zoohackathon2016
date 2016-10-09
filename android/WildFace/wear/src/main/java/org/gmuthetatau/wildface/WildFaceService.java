@@ -342,9 +342,12 @@ public class WildFaceService extends CanvasWatchFaceService {
                     break;
                 case TAP_TYPE_TAP:
                     // The user has completed the tap gesture.
-                    // TODO: Add code to handle the tap gesture.
-                    Toast.makeText(getApplicationContext(), R.string.message, Toast.LENGTH_SHORT)
-                            .show();
+                    /**
+                     * Open the list for selecting an incident type
+                     */
+//                    Toast.makeText(getApplicationContext(), R.string.message, Toast.LENGTH_SHORT)
+//                            .show();
+                    onWatchFaceTap();
                     break;
             }
             invalidate();
@@ -513,5 +516,14 @@ public class WildFaceService extends CanvasWatchFaceService {
                 mUpdateTimeHandler.sendEmptyMessageDelayed(MSG_UPDATE_TIME, delayMs);
             }
         }
+    }
+
+    private void onWatchFaceTap() {
+        /**
+         * Open the list for selecting an incident type
+         */
+        Intent startIntent = new Intent(this, IncidentReportActivity.class);
+        startIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startIntent);
     }
 }
