@@ -6,7 +6,7 @@ The National Zoo held its first ever Zoohackathon across multiple continents and
 
 * [Kunal Sarkhel](https://github.com/techwizrd)
 * George Contreras
-* Vikram Sarkhel
+* [Vikram Sarkhel](https://github.com/rudetrooper)
 * [Adal Santana](https://github.com/aSantana)
 * [Zack Alfakir](https://github.com/ZackAlfakir)
 * [Jay Kim](https://github.com/jlegendary)
