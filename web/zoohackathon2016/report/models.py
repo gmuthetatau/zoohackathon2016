@@ -7,7 +7,7 @@ class Report(models.Model):
     """Store report information"""
     REPORT_TYPES = Choices(
         ('A', 'Shop/Market'),
-        ('B', 'Restaraunt/Eatery'),
+        ('B', 'Restaurant/Eatery'),
         ('C', 'Live Animal Display'),
         ('D', 'Poaching'),
         ('E', 'Other'),
