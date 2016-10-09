@@ -38,18 +38,6 @@ public class Zoohackathon_Reporting extends AppCompatActivity
         Zoohackathon_Reporting.context = this;
 
 
-        final JSONObject json = new JSONObject();
-        try {
-            json.put("report_type", "A");
-            json.put("latitude", 1);
-            json.put("longitude", 2);
-            json.put("device_id", "java-test");
-            json.put("event_time", "2016-10-07 18:00");
-        }
-        catch (JSONException e)
-        {
-            Zoohackathon_Reporting.quickToast(e.toString());
-        }
 
 
         final Poster poster = new Poster(database_url);
@@ -77,8 +65,23 @@ public class Zoohackathon_Reporting extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
+                JSONObject json = new JSONObject();
                 try
                 {
+                    try {
+                        double lat = Math.round(Math.random()*50 * 1e6) / 1e6;
+                        double lon = Math.round(Math.random()*50 * 1e6) / 1e6;
+                        char c = (char)((int)(Math.random()*4+65));
+                        json.put("report_type", String.valueOf(c));
+                        json.put("latitude", lat);
+                        json.put("longitude", lon);
+                        json.put("device_id", "java-test");
+                        json.put("event_time", "2016-10-07 18:00");
+                    }
+                    catch (JSONException e)
+                    {
+                        Zoohackathon_Reporting.quickToast(e.toString());
+                    }
                     poster.post(json);
                     //lm.requestSingleUpdate(c, getLocationListener(), looper);
                     //String s = tracker.getLocation().toString();
